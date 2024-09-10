@@ -33,3 +33,17 @@ input[type="range"] {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+#copyButton {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#copyButton:hover {
+    background-color: #27ae60;
+}
