@@ -5,12 +5,25 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+.toCsv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.toJson {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Header styling */
 h1 {
@@ -30,7 +43,7 @@ h1 {
     background-color: #f9f9f9;
 }
 
-#csvOutput {
+#csvInput {
     width: 50%;
     padding: 10px;
     border: 2px solid #ccc;
@@ -40,9 +53,31 @@ h1 {
     background-color: #f9f9f9;
 }
 
+#csvOutput {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+}
+
+#JsonOutput {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+}
+
 /* Button styling */
 
-#convertBtn {
+#convertToCSVBtn {
     margin-top: 40px;
     display: block;
     padding: 10px;
@@ -54,11 +89,31 @@ h1 {
     cursor: pointer;
 }
 
-#convertBtn:hover {
+#convertToCSVBtn:hover {
+    background-color: #25843a;
+}
+
+#convertToJSONBtn {
+    margin-top: 40px;
+    display: block;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#convertToJSONBtn:hover {
     background-color: #25843a;
 }
 
 /* Disabled textarea (CSV output) */
-#convertBtn[readonly] {
+#convertToCSVBtn[readonly] {
+    background-color: #e9ecef;
+}
+
+#convertToJSONBtn[readonly] {
     background-color: #e9ecef;
 }

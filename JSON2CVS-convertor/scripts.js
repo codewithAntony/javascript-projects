@@ -31,7 +31,7 @@ function jsonToCSV(jsonData) {
     return [csvHeaders.join(','), ...csvRows].join('\n');
 }
 
-document.getElementById('convertBtn').addEventListener('click', () => {
+document.getElementById('convertToCSVBtn').addEventListener('click', () => {
     const jsonInput = document.getElementById('jsonInput').value;
 
     try {
@@ -41,6 +41,32 @@ document.getElementById('convertBtn').addEventListener('click', () => {
 
         const csvOutput = jsonToCSV(dataToConvert);
         document.getElementById('csvOutput').value = csvOutput;
+    } catch (e) {
+        alert("Invalid JSON. Please check your input.")
+    }
+})
+
+// CSV to JSON conversion
+function csvToJSON(csv) {
+    const lines = csv.trim().split('\n');
+    const headers = lines[0].split(',').map(header => header.trim().replace(/['"]/g, ''));
+    const jsonData = lines.splice(1).map(line => {
+        const values = line.split(',').map(value => value.trim().replace(/['"]/g, ''));
+        let obj ={};
+        headers.forEach((header, index) => {
+            obj[header] = values[index];
+        });
+        return obj;
+    });
+    return jsonData;
+}
+
+document.getElementById('convertToJSONBtn').addEventListener('click', () => {
+    const csvInput = document.getElementById('csvInput').value;
+
+    try {
+        const jsonOutput = csvToJSON(csvInput);
+        document.getElementById('jsonOutput').value = JSON.stringify(jsonOutput, null, 2);
     } catch (e) {
         alert("Invalid JSON. Please check your input.")
     }

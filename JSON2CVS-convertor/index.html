@@ -9,12 +9,24 @@
 </head>
 
 <body>
-    <h1>JSON to CSV Convertor</h1>
-    <textarea id="jsonInput" rows="10" cols="50" placeholder="Enter JSON here..."></textarea
+    <div class="toCsv">
+        <h1>JSON to CSV Convertor</h1>
+        <textarea id="jsonInput" rows="10" cols="50" placeholder="Enter JSON here..."></textarea
         <br>
-    <button id="convertBtn">Convert to CSV</button>
+    <button id="convertToCSVBtn">Convert to CSV</button>
     <br><br>
     <textarea id="csvOutput" rows="10" cols="50" placeholder="CSV will appear here.." readonly></textarea>
+    </div>
+
+    <div class="toJson">
+        <h1>CSV to JSON Convertor</h1>
+        <textarea id="csvInput" rows="10" cols="50" placeholder="Enter CSV here..."></textarea
+        <br>
+    <button id="convertToJSONBtn">Convert to JSON</button>
+    <br><br>
+    <textarea id="jsonOutput" rows="10" cols="50" placeholder="JSON will appear here.." readonly></textarea>
+    </div>
+
     <script src="scripts.js"></script>
 </body>
 
