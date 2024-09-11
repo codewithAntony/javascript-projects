@@ -1,0 +1,64 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+/* Header styling */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Textarea styling */
+#jsonInput {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    background-color: #f9f9f9;
+}
+
+#csvOutput {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    background-color: #f9f9f9;
+}
+
+/* Button styling */
+
+#convertBtn {
+    margin-top: 40px;
+    display: block;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#convertBtn:hover {
+    background-color: #25843a;
+}
+
+/* Disabled textarea (CSV output) */
+#convertBtn[readonly] {
+    background-color: #e9ecef;
+}

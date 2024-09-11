@@ -1,38 +1,47 @@
-function convertToCSV() {
+// Function to flatten nested JSON
+
+function flattenJSON(data, parentKey = '', result = {}) {
+    for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+            const newKey = parentKey ? `${parentKey}.${key}` : key;
+            if (typeof data[key] === 'object' && data[key] !== null && !Array.isArray(data[key])) {
+                flattenJSON(data[key], newKey, result);
+            } else {
+                result[newKey] = data[key];
+            }
+        }
+    }
+    return result;
+}
+
+
+function jsonToCSV(jsonData) {
+    const flatData = jsonData.map(obj => flattenJSON(obj));
+
+    const csvHeaders = Object.keys(flatData.reduce((acc, curr) => {
+        return Object.assign(acc, curr);
+    }, {}));
+
+    const csvRows = flatData.map(row => {
+        return csvHeaders.map(header => {
+            return row[header] !== undefined ? `"${row[header]}"` : '""';
+        }).join(',');
+    });
+
+    return [csvHeaders.join(','), ...csvRows].join('\n');
+}
+
+document.getElementById('convertBtn').addEventListener('click', () => {
     const jsonInput = document.getElementById('jsonInput').value;
+
     try {
         const jsonData = JSON.parse(jsonInput);
 
-        if (!Array.isArray(jsonData) || jsonData.length === 0) {
-            alert('Please provide an array of objects.');
-            return;
-        }
+        const dataToConvert = Array.isArray(jsonData) ? jsonData : [jsonData];
 
-        const keys = Object.keys(jsonData[0]);
-
-        let csvContent = keys.join(',') + '\n';
-
-        jsonData.forEach(obj => {
-            let row = keys.map(key => {
-                let value = obj[key] === null || obj[key] === undefined ? '' : obj[key].toString();
-                value = value.includes(',') || value.includes('"') ? `"${value.replace(/"/g, '""')}"` : value;
-                return value;
-            }).join(',');
-            csvContent += row + '\n';
-        });
-
-        downloadCSV(csvContent);
-    } catch (error) {
-        alert('Invalid JSON format!');
+        const csvOutput = jsonToCSV(dataToConvert);
+        document.getElementById('csvOutput').value = csvOutput;
+    } catch (e) {
+        alert("Invalid JSON. Please check your input.")
     }
-}
-
-function downloadCSV(csvContent) {
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const downloadLink = document.getElementById('downloadLink');
-    downloadLink.href = url;
-    downloadLink.download = 'converted.csv';
-    downloadLink.style.display = 'inline';
-    downloadLink.click();
-}
+})

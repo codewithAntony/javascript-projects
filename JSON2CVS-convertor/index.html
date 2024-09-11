@@ -10,9 +10,11 @@
 
 <body>
     <h1>JSON to CSV Convertor</h1>
-    <textarea id="jsonInput" rows="10" cols="10" placeholder="Enter JSON here..."></textarea><br>
-    <button onclick="convertToCSV()">Convert to CSV</button>
-    <a id="downloadLink" style="display: none;">Download CSV</a>
+    <textarea id="jsonInput" rows="10" cols="50" placeholder="Enter JSON here..."></textarea
+        <br>
+    <button id="convertBtn">Convert to CSV</button>
+    <br><br>
+    <textarea id="csvOutput" rows="10" cols="50" placeholder="CSV will appear here.." readonly></textarea>
     <script src="scripts.js"></script>
 </body>
 
