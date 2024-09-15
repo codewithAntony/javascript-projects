@@ -48,26 +48,37 @@ document.getElementById('convertToCSVBtn').addEventListener('click', () => {
 
 // CSV to JSON conversion
 function csvToJSON(csv) {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map(header => header.trim().replace(/['"]/g, ''));
-    const jsonData = lines.splice(1).map(line => {
-        const values = line.split(',').map(value => value.trim().replace(/['"]/g, ''));
+    const [headers, ...rows] = csv.split('\n').map(row => row.split(','));
+    
+    return rows.map(row => {
+
         let obj ={};
         headers.forEach((header, index) => {
-            obj[header] = values[index];
+            obj[header] = row[index].replace(/"/g, '');
         });
         return obj;
     });
-    return jsonData;
 }
 
 document.getElementById('convertToJSONBtn').addEventListener('click', () => {
     const csvInput = document.getElementById('csvInput').value;
 
     try {
-        const jsonOutput = csvToJSON(csvInput);
-        document.getElementById('jsonOutput').value = JSON.stringify(jsonOutput, null, 2);
+        const jsonOutput = JSON.stringify(csvToJSON(csvInput), null, 4);
+        document.getElementById('jsonOutput').value = jsonOutput;
     } catch (e) {
-        alert("Invalid JSON. Please check your input.")
+        alert("Invalid CSV. Please check your input.")
     }
 })
+
+// Clear JSON Input and Output
+document.getElementById('clearJSONBtn').addEventListener('click', () => {
+    document.getElementById('jsonInput').value = '';
+    document.getElementById('csvOutput').value = '';
+})
+
+// Clear CSV Input and Output
+document.getElementById('clearCSVBtn').addEventListener('click', () => {
+    document.getElementById('csvInput').value = '';
+    document.getElementById('jsonOutput').value = '';
+});
