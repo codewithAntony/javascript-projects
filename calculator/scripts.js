@@ -16,14 +16,16 @@ function appendNumber(number) {
 }
 
 function setOperation(op) {
-    if (operation !== null) calculate();
+    if (operation !== null) 
+        calculate();
     operation = op;
     previousInput = currentInput;
     shouldResetDisplay = true;
 }
 
 function calculate() {
-    if (operation === null || previousInput === '') return;
+    if (operation === null || previousInput === '') 
+        return;
     let result;
     const prev = parseFloat(previousInput);
     const current = parseFloat(currentInput);
