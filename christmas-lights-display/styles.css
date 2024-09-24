@@ -1,0 +1,12 @@
+.christmas-lights-container {
+    position: relative;
+    width: 560px;
+    height: 240px;
+    border: 1px solid #ccc;
+}
+
+.christmas-light {
+    position: absolute;
+    border-radius: 50%;
+    transition: opacity 0.5s ease;
+}
